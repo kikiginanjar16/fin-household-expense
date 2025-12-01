@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Variables
-IMAGE_NAME="app-be-image:latest"
-CONTAINER_NAME="app-be-latest"
+IMAGE_NAME="fin-be-image:latest"
+CONTAINER_NAME="fin-be-latest"
 DOCKERFILE_PATH="."  # Path to your Dockerfile, usually the current directory
-PORT_MAPPING="8073:8073"  # Adjust this according to your app's requirements
+PORT_MAPPING="8574:8574"  # Adjust this according to your app's requirements
 #VOLUME_MAPPING="/path/on/host:/path/in/container"  # If you need to map volumes
 
 # Pull latest changes from the repository (if needed)
