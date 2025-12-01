@@ -1,0 +1,62 @@
+[
+    {
+        "name": "planning",
+        "entity": "planning",
+        "routes": "plannings",
+        "idType": "uuid",
+        "fields": [
+            {
+                "name": "wallet_id",
+                "type": "uuid",
+                "unique": false,
+                "nullable": false,
+                "description": "ID of the wallet this planning belongs to",
+                "example": "323e4567-e89b-12d3-a456-426614174000"
+            },
+            {
+                "name": "category_id",
+                "type": "uuid",
+                "unique": false,
+                "nullable": true,
+                "description": "ID of the category for this planning item (optional for generic planning)",
+                "example": "423e4567-e89b-12d3-a456-426614174000"
+            },
+            {
+                "name": "planned_type",
+                "type": "enum",
+                "enumValues": [
+                    "expense",
+                    "income"
+                ],
+                "tsEnumName": "PlannedType",
+                "description": "Whether this is planned expense or income",
+                "example": "expense"
+            },
+            {
+                "name": "planned_amount",
+                "type": "float",
+                "description": "Planned amount for this category in the given month",
+                "example": 1500000
+            },
+            {
+                "name": "note",
+                "type": "text",
+                "unique": false,
+                "nullable": true,
+                "description": "Optional note for this planning item",
+                "example": "Kurangi jajan kopi, fokus masak di rumah"
+            },
+            {
+                "name": "status",
+                "type": "enum",
+                "enumValues": [
+                    "open",
+                    "closed"
+                ],
+                "tsEnumName": "PlanningStatus",
+                "description": "Status of the planning item",
+                "example": "open"
+            }
+        ]
+    }
+]
