@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Put, Delete, Body, Param, Query, Res, UseInterceptors, UploadedFile } from '@nestjs/common';
-import { ApiQuery, ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody, ApiConsumes } from '@nestjs/swagger';
+import { ApiQuery, ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody, ApiConsumes, ApiBearerAuth } from '@nestjs/swagger';
 import { Response } from 'express';
 import { CreatePlanningUseCase } from '../usecases/create-planning.usecase';
 import { GetPlanningUseCase } from '../usecases/get-planning.usecase';
@@ -9,8 +9,10 @@ import { DeletePlanningUseCase } from '../usecases/delete-planning.usecase';
 import { CreatePlanningDto } from '../dto/create-planning.dto';
 import { PlannedType, UpdatePlanningDto } from '../dto/update-planning.dto';
 import { PlanningStatus } from 'src/entities/planning.entity';
+import { JWT_ACCESS_TOKEN } from 'src/common/constant/constant';
 
 @ApiTags('plannings')
+@ApiBearerAuth(JWT_ACCESS_TOKEN)
 @Controller({ version: '1', path: 'plannings' })
 export class PlanningController {
   constructor(
