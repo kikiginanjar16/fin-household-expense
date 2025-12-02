@@ -19,7 +19,7 @@ export class GetTransactionUseCase {
       }
 
       const transaction = await this.transactionRepository.findOne({ 
-        where: { id, deleted_at: null },
+        where: { id },
         relations,
       });
 
@@ -48,7 +48,7 @@ export class GetTransactionUseCase {
         throw new BadRequestException('Page and limit must be positive numbers');
       }
 
-      const where = { ...filters, deleted_at: null };
+      const where = { ...filters };
       const [data, total] = await this.transactionRepository.findAndCount({
         where,
         relations,

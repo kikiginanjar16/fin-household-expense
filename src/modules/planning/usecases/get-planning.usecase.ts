@@ -19,7 +19,7 @@ export class GetPlanningUseCase {
       }
 
       const planning = await this.planningRepository.findOne({ 
-        where: { id, deleted_at: null },
+        where: { id : id },
         relations,
       });
 
@@ -48,7 +48,7 @@ export class GetPlanningUseCase {
         throw new BadRequestException('Page and limit must be positive numbers');
       }
 
-      const where = { ...filters, deleted_at: null };
+      const where = { ...filters };
       const [data, total] = await this.planningRepository.findAndCount({
         where,
         relations,

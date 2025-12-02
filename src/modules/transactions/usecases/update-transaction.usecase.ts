@@ -24,7 +24,7 @@ export class UpdateTransactionUseCase {
       }
 
       // Check if entity exists and is not soft-deleted
-      const transaction = await this.transactionRepository.findOne({ where: { id, deleted_at: null } });
+      const transaction = await this.transactionRepository.findOne({ where: { id } });
       if (!transaction) {
         throw new NotFoundException(`Transaction with ID ${id} not found or has been deleted`);
       }
@@ -36,7 +36,7 @@ export class UpdateTransactionUseCase {
 
         const planningId = updateTransactionDto.planning_id ?? transaction.planning_id;
         const planning = await this.planningRepository.findOne({
-          where: { id: planningId, deleted_at: null },
+          where: { id: planningId },
         });
 
         if (!planning) {

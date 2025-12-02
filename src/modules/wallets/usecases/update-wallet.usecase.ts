@@ -21,7 +21,7 @@ export class UpdateWalletUseCase {
       }
 
       // Check if entity exists and is not soft-deleted
-      const wallet = await this.walletRepository.findOne({ where: { id, deleted_at: null } });
+      const wallet = await this.walletRepository.findOne({ where: { id } });
       if (!wallet) {
         throw new NotFoundException(`Wallet with ID ${id} not found or has been deleted`);
       }

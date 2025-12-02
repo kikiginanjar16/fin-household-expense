@@ -21,7 +21,7 @@ export class UpdatePlanningUseCase {
       }
 
       // Check if entity exists and is not soft-deleted
-      const planning = await this.planningRepository.findOne({ where: { id, deleted_at: null } });
+      const planning = await this.planningRepository.findOne({ where: { id } });
       if (!planning) {
         throw new NotFoundException(`Planning with ID ${id} not found or has been deleted`);
       }

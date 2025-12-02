@@ -22,7 +22,7 @@ export class DeleteTransactionUseCase {
       }
 
       // Check if entity exists and is not already soft-deleted
-      const transaction = await this.transactionRepository.findOne({ where: { id, deleted_at: null } });
+      const transaction = await this.transactionRepository.findOne({ where: { id } });
       if (!transaction) {
         throw new NotFoundException(`Transaction with ID ${id} not found or has been deleted`);
       }
@@ -30,7 +30,7 @@ export class DeleteTransactionUseCase {
       // Rollback planning status when needed
       if (transaction.is_planned && transaction.planning_id) {
         const planning = await this.planningRepository.findOne({
-          where: { id: transaction.planning_id, deleted_at: null },
+          where: { id: transaction.planning_id },
         });
 
         if (planning) {

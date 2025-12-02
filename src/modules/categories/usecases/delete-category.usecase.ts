@@ -19,7 +19,7 @@ export class DeleteCategoryUseCase {
       }
 
       // Check if entity exists and is not already soft-deleted
-      const category = await this.categoryRepository.findOne({ where: { id, deleted_at: null } });
+      const category = await this.categoryRepository.findOne({ where: { id } });
       if (!category) {
         throw new NotFoundException(`Category with ID ${id} not found or has been deleted`);
       }

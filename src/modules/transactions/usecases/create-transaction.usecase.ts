@@ -29,7 +29,7 @@ export class CreateTransactionUseCase {
         }
 
         const planning = await this.planningRepository.findOne({
-          where: { id: createTransactionDto.planning_id, deleted_at: null },
+          where: { id: createTransactionDto.planning_id },
         });
 
         if (!planning) {
