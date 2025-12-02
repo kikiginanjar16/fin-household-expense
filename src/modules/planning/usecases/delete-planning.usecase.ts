@@ -19,15 +19,14 @@ export class DeletePlanningUseCase {
       }
 
       // Check if entity exists and is not already soft-deleted
-      const planning = await this.planningRepository.findOne({ where: { id, deleted_at: null } });
+      const planning = await this.planningRepository.findOne({ where: { id : id } });
       if (!planning) {
         throw new NotFoundException(`Planning with ID ${id} not found or has been deleted`);
       }
 
       // Perform soft delete with audit fields
       const result = await this.planningRepository.softDelete({
-        id,
-        deleted_at: null,
+        id : id
       });
 
       if (result.affected > 0) {
